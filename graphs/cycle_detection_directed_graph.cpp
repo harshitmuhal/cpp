@@ -30,7 +30,7 @@ public:
                 return true;
             }
             if(!visited[nbr])
-            ans=iscyclicdfshelper(nbr, visited, instack);
+                ans=iscyclicdfshelper(nbr, visited, instack);
             
             if(ans==true){
                 return true;
@@ -40,15 +40,23 @@ public:
         return ans;
     }
     
-    bool iscyclicdfs(int s){
+    bool iscyclicdfs(){
         map<t,bool> visited;
         map<int,bool> instack;
-        return iscyclicdfshelper(s,visited,instack);
+        
+        for(auto node:adjlist){
+            if(!visited[node.first]){
+            bool ans=iscyclicdfshelper(node.first,visited,instack);
+            if(ans)
+                return true;
+            }
+        }
+        return false;
     }
 };
 
 int main(){
-
+    
     graph<int> g;
     g.addedge(1, 0,false);
     g.addedge(0, 2,false);
@@ -58,13 +66,13 @@ int main(){
     g.addedge(3, 1,false);
     g.addedge(3, 0,false);
     
-    if(g.iscyclicdfs(0)){
+    if(g.iscyclicdfs()){
         cout<<"cycle is present";
     }
     else{
         cout<<"cycle ain't present";
     }
-
+    
     return 0;
 }
 
