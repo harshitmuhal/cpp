@@ -10,8 +10,7 @@ public:
     int v;
     map<t,list<t> > adjlist;
     
-    graph(int d){
-        v=d;
+    graph(){
     }
     
     void addedge(t i,t j,bool isbidirectional=true){
