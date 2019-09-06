@@ -8,7 +8,11 @@
 #define pob pop_back
 #define lli long long int
 #define li long int
+#define m 100
+
 using namespace std;
+
+
 void multiply(lli F[2][2], lli M[2][2]);
 
 void power(lli F[2][2], lli n);
