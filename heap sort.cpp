@@ -1,41 +1,37 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-
-
-void heapify(int *arr,int i,int n){
-	
-	int left = i<<1;
-	int right = left+1;
-
-	int mx_idx = i;
-	if(left<n and arr[i]<arr[left]){
-		mx_idx = left;
-	}
-	if(right<n and arr[mx_idx]<arr[right]){
-		mx_idx = right;
-	}
-	if(i!=mx_idx){
-		swap(arr[i],arr[mx_idx]);
-		heapify(arr,mx_idx,n);
-	}
+void heapify(int arr[],int n,int idx){
+    int minidx=idx;
+    int left=2*idx+1;
+    int right=2*idx+2;
+    if(arr[minidx]>arr[left] && left<n){
+        minidx=left;
+    }
+    if(arr[minidx]>arr[right]&& right<n){
+        minidx=right;
+    }
+    if(idx!=minidx){
+        swap(arr[idx],arr[minidx]);
+        heapify(arr,n, minidx);
+    }
+}
+void heap_sort(int arr[],int n){
+    for(int i=n/2;i>=0;i--){
+        heapify(arr, n,i);
+    }
+    for(int i=n-1;i>=0;i--){
+        swap(arr[i],arr[0]);
+        heapify(arr, i,0);
+    }
+}
+int main()
+{
+    int arr[]={7,2,9,1,4,3,6};
+    int n=7;
+    heap_sort(arr,n);
+    for(int i=0;i<n;i++){
+        printf("%d\n",arr[i]);
+    }
+return 0;
 }
 
-
-int main(){
-	int arr[] = {-1,5,4,1,2,3,0};
-	int n = sizeof(arr)/sizeof(int);
-
-	//Convert Array into Heap --> O(N)
-	for(int i=n/2;i>=1;i--){
-		heapify(arr,i,n);
-	}
-
-	for(int i=0;i<n;i++){
-		cout<<arr[i]<<" ";
-	}
-	//remove the elements top --> last 
-
-	
-
-	return 0;
-}
