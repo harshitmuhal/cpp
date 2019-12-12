@@ -15,10 +15,7 @@ int gcd(int a,int b){
     return gcd_;
 }
 
-
 //product of lcm and gcd is equal to the product of the number itself
-
-
 int lcm(int gcd_,int a,int b){
     return (a*b)/gcd_;
 }
