@@ -8,9 +8,14 @@ void psieve(int *p,int n){
     }
     for(int i=3;i<=n;i+=2){
         if(p[i]){
+            // this inner loop is for marking multiples of i as not prime
+            // so multiples of i are present at i,i+i,i+i+i...that is why
+            // in the inner loop increment is by 2*i ..its not only i because
+            // we want to mark only for odd positions.
             for(int j=i*i;j<=n;j+=2*i){
-                // if we start loop from i*i then at any i numbers before i*i already check ho chuke honge for prime
-                p[j] = 0;
+            // if we start loop from i*i then at any i,numbers before i*i
+            //already check ho chuke honge for prime by numbers less than i
+            p[j] = 0;
             }
         }
     }
