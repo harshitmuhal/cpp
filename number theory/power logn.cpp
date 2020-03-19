@@ -1,25 +1,16 @@
 #include<iostream>
-
 using namespace std;
-double myPow(double x, int n) {
-    double temp;
-    int y=n;
-    if(y == 0)
-        return 1;
-    temp = myPow(x, y / 2);
-    if (y % 2 == 0)
-        return temp * temp;
-    else
-    {
-        if(y > 0)
-            return x * temp * temp;
-        else
-            return (temp * temp) / x;
-    }
+
+template<class type>
+type power(type x, int n) {
+    type temp; int y=n;
+    if(y == 0) return 1;
+    temp = power(x,y/2);
+    return ((y % 2)?((y>0)?x * temp * temp:(temp * temp) / x):temp * temp);
 }
 int main(){
     int a;int x;
     cin>>a>>x;
-    cout<<fn(a,x);
+    cout<<power<double>(a,x);
     return 0;
 }
