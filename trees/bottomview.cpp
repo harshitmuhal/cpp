@@ -40,7 +40,7 @@ map<int,pair<int,int>>mp;
         return ;
     }
     if(mp.find(dist)!=mp.end()){
-        if(level<mp[dist].second){
+        if(level>mp[dist].second){
             mp[dist].first=root->data;
             mp[dist].second=level;
         }
