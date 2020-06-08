@@ -2,38 +2,29 @@
 
 using namespace std;
 
-int multiply(int x,int array[],int size){
-    int carry=0;
-    for(int i=0;i<size;i++){
-        int product=array[i]*x+carry;
-        array[i]=product%10;
-        carry=product/10;
-    }
-    
-    while(carry){
-        array[size]=carry%10;
-        carry=carry/10;
-        size++;
-    }
-    return size;
-}
-
 void factorial(int n){
-    int array[1000];
-    //it means 1! is stored in array right now
-    array[0]=1;
-    int size=1;
-    for(int x=2;x<=n;x++){
-        size=multiply(x,array,size);
+    int fact[(int)1e5];
+    fact[0] = 1;
+    int l = 1;
+    while (n > 1) {
+        int c = 0, i = 0;
+        for (; i < l; i++) {
+            int value = (c + n * fact[i]);
+            fact[i] = value % 10;
+            c = value / 10;
+        }
+        while (c > 0) {
+            fact[i++] = c % 10;
+            l++;
+            c /= 10;
+        }
+        n--;
     }
-    
-    //to print array
-    for(int i=size-1;i>=0;i--){
-        cout<<array[i];
+    for (int i = l - 1; i >= 0; i--) {
+        cout << fact[i];
     }
+    cout << "\n";
 }
-
-
 int main(){
     int n;
     cin>>n;
