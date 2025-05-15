@@ -1,4 +1,3 @@
-# some concepts in c++
 
 ```mermaid
 classDiagram
